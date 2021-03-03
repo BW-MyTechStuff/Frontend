@@ -9,6 +9,9 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import AddNewItem from "./components/AddNewItem";
 import EditItem from "./components/EditItem";
+import BrowseListings from "./components/BrowseListings";
+import PurchaseView from './components/RentView';
+import SuccessPage from './components/SuccessPage';
 
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
       <PrivateRoute path="/user-dashboard" component={UserDashboard} logout={logout} />
       <PrivateRoute path="/add-new-item" component={AddNewItem} />
       <PrivateRoute path="/edit-item" component={EditItem} />
+      <PrivateRoute path="/browse-listings" component={BrowseListings} />
+      <PrivateRoute path="/item" component={PurchaseView} />
+      <PrivateRoute path="/success-page" component={SuccessPage} />
     </div>
   );
 }
