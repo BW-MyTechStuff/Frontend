@@ -1,28 +1,29 @@
 import React, { useState, useEffect}  from 'react'
 import axios from 'axios'
-import * as yup from yup
+import * as yup from "yup"
+import formSchema from "../utils/form_validation/formLogin";
 
-function Login() {
+const initialValues = {
+    username: '',
+    password:'',
+}
+const initialErrors = {
+    username: '',
+    password:'',
+}
 
-    const initialValues = {
-        username: '',
-        password:'',
-    }
+const initialDisabled = true
 
-    const initialErrors = {
-        username: '',
-        password:'',
-    }
+function Login(props) {
 
-    const initialDisabled = true
-
-    const [login, setLogin] = useState({})
+    // const [login, setLogin] = useState({})
     const [values, setValues] = useState(initialValues)
     const [errors, setErrors] = useState(initialErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
 
-    const change = (name, value) => {
-        yup.reach(formSchema, name)
+    const update = (name, value) => {
+        yup
+          .reach(formSchema, name)
           .validate(value)
           .then(() => {
             setErrors({...errors, [name]: ''})
@@ -35,30 +36,39 @@ function Login() {
           [name]: value 
         })
       }
-
       useEffect(() => {
         formSchema.isValid(values).then(valid => setDisabled(!valid))
       }, [values])
 
-      const postLogin = newLogin => {
-        axios.post('https://usemytechstuff-tt26.herokuapp.com/users/user', newLogin)
-        .then(res => {
-          setLogin([...login, res.data])
-        })
-        .catch(err => {
-          console.log(err);
-        })
-        setValues(initialValues)
-      }
 
-      const submit = evt => {
-        const newLogin = {
-          name: values.name,
-          password: values.password
-        }
-        postLogin(newLogin)
-        setValues(initialValues)
-      }
+
+      const submit = (e) => {
+        e.preventDefault();
+        axios
+          .post(
+            "YOUR LOGIN ENDPOINT HERE",
+            `grant_type=password&username=${values.username}&password=${values.password}`,
+            {
+              headers: {
+                Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            },
+          )
+          .then((res) => {
+            console.log(res.data);
+            localStorage.setItem("token", res.data.access_token);
+            props.history.push("/user-dashboard");
+          });
+      };
+
+
+
+
+      const change = (evt) => {
+        const { name, value } = evt.target;
+        update(name, value);
+      };
       
       
 
@@ -73,6 +83,10 @@ function Login() {
                     <input name= 'password' type= 'text' onChange={change} value= {values.password}/>
                 </label>
                 <button disabled={disabled}>Login</button>
+                <div>
+                  <div>{errors.username}</div>
+                  <div>{errors.password}</div>
+                </div>
             </form>  
         </div>
     )
