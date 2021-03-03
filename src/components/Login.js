@@ -16,7 +16,6 @@ const initialDisabled = true
 
 function Login(props) {
 
-    // const [login, setLogin] = useState({})
     const [values, setValues] = useState(initialValues)
     const [errors, setErrors] = useState(initialErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -47,7 +46,7 @@ function Login(props) {
         axios
           .post(
             "https://usemytechstuff-tt26.herokuapp.com/login",
-            `grant_type=password&username=${values.username}&password=${values.password}`,
+            `grant_type=password&username=${values.username}&password=${values.password}`, 
             {
               headers: {
                 Authorization: `Basic ${btoa("lambda-client:lambda-secret")}`,
@@ -56,9 +55,12 @@ function Login(props) {
             },
           )
           .then((res) => {
-            console.log("res.data log:", res.data);
+            // console.log("res.data log:", res.data);
+            props.setIsLoggedIn(true);
             localStorage.setItem("token", res.data.access_token);
+            localStorage.setItem("name", values.username);
             props.history.push("/user-dashboard");
+            // console.log(localStorage.getItem("name"));
           })
           .catch((err) => console.log({err}))
       };
