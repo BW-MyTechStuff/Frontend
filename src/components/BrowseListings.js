@@ -19,7 +19,12 @@ function BrowseListings() {
         <div>
             {console.log(items)}
             {items.map(item => {
-                return <div>{item.itemname}</div>
+                return <div className="item-browse-card">
+                            <p>{item.itemname}</p>
+                            <p>{item.itemstatus.itemstatustype}</p>
+                            <p>{item.itemcostperday + "$ per day"}</p>
+                       </div>
+ 
             })}
         </div>
     )
