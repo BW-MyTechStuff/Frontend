@@ -46,7 +46,7 @@ export default function UserDashboard(props) {
                     </div> */}
                 <div className="owner-listings">
                     <h3>My Listed Items</h3>
-                    <Link to="my-listing-item-view">
+                    <Link to="edit-item">
                         {(user.items ? user.items.map(item => {return item.itemname}) : null)}
                     </Link>
                     <Link to="/add-new-item" >
