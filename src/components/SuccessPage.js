@@ -4,7 +4,7 @@ function SuccessPage() {
     const history = useHistory();
 
     const returnToDash = () => {
-        history.push("/browse-listings")
+        history.push("/user-dashboard")
     }
 
     return (

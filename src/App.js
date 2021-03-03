@@ -10,7 +10,7 @@ import SignUp from "./components/SignUp";
 import AddNewItem from "./components/AddNewItem";
 import EditItem from "./components/EditItem";
 import BrowseListings from "./components/BrowseListings";
-import PurchaseView from './components/PurchaseView';
+import PurchaseView from './components/RentView';
 import SuccessPage from './components/SuccessPage';
 
 

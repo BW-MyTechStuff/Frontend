@@ -11,7 +11,7 @@ function ItemView(props) {
     }
 
     return (
-        <div className="">
+        <div className="item-browse-cards">
             <p>{item.itemname}</p>
             <p>{item.itemstatus.itemstatustype}</p>
             <p>{item.itemcostperday + "$ per day"}</p>

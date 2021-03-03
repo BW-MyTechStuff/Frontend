@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-function PurchaseView() {
+function RentView() {
     const history = useHistory();
     const arr = history.location.pathname.split("/")
     const id = arr[2]
@@ -32,9 +32,13 @@ function PurchaseView() {
         
         <div>
             {(item ? <div>
-                        <p>{item.itemname}</p>
-                        <p>{item.itemdescription}</p>
-                        <p>{item.user.fname + " " + item.user.lname}</p>
+                        <h3>{item.itemname}</h3>
+                        <p>{`Item Description: ${item.itemdescription}`}</p>
+                        <p>{`Availability: ${item.itemstatus.itemstatustype}`}</p>
+                        <p>{`Cost per week: ${item.itemcostperday}$`}</p>
+                        <h3>Owner Contact:</h3>
+                        <p>{`Name: ${item.user.fname} ${item.user.lname}`}</p>
+                        <p>{`Email: ${item.user.email}`}</p>
                         <button onClick={back}>Back</button>
                         <button onClick={rent}>Rent</button>
                     </div> 
@@ -42,9 +46,10 @@ function PurchaseView() {
                     : <p>loading</p>)}
               
         </div>
+        
     )
 }
         
 
-export default PurchaseView
+export default RentView
 

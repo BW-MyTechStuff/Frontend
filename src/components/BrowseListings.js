@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 import ItemView from "./ItemView";
 
 function BrowseListings() {
 
-    const [ items, setItems] = useState([])
+    const [ items, setItems] = useState([]);
+    const history = useHistory();
     
 
     useEffect(() => {
@@ -17,11 +19,14 @@ function BrowseListings() {
         .catch(err => console.log({err}))
     }, [])
 
-    
+    const returnToDash = () => {
+        history.push("/user-dashboard")
+    }
 
     return (
         <div>
             <h1>Browse Listings</h1>
+            <button onClick={returnToDash}>Return to Dashboard</button>
             
             {items.map(item => {
                 {console.log(items)}
