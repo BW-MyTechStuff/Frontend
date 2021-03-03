@@ -57,6 +57,7 @@ function Login(props) {
           )
           .then((res) => {
             console.log("res.data log:", res.data);
+            props.setIsLoggedIn(true);
             localStorage.setItem("token", res.data.access_token);
             props.history.push("/user-dashboard");
           })
