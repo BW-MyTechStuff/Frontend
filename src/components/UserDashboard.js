@@ -42,12 +42,15 @@ export default function UserDashboard(props) {
             <br />
             <div className="listing-container">
                 {/* <div className="currently-renting">
-                    not sure if this is possible rn
-                </div> */}
+                        not sure if this is possible rn
+                    </div> */}
                 <div className="owner-listings">
                     <h3>My Listed Items</h3>
                     <Link to="my-listing-item-view">
                         {(user.items ? user.items.map(item => {return item.itemname}) : null)}
+                    </Link>
+                    <Link to="/add-new-item" >
+                        <p>Add New Item</p>
                     </Link>
                 </div>
             </div>
