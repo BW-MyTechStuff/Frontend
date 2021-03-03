@@ -20,6 +20,13 @@ function PurchaseView() {
            
         }, [])
 
+    const back = () => {
+        history.push("/browse-listings")
+    }
+
+    const rent = () => {
+        history.push("/success-page")
+    }
     
     return (
         
@@ -28,9 +35,8 @@ function PurchaseView() {
                         <p>{item.itemname}</p>
                         <p>{item.itemdescription}</p>
                         <p>{item.user.fname + " " + item.user.lname}</p>
-                        <Link to="/browse-listings">
-                            Back
-                        </Link>
+                        <button onClick={back}>Back</button>
+                        <button onClick={rent}>Rent</button>
                     </div> 
                     
                     : <p>loading</p>)}
