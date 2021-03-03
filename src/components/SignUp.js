@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const formReset = {
+const initialFormValues = {
     userrole:{
-        userroleid: 1,
-        userroletype: ""
+        userroleid: 0,
+        userroletype: "",
     },
     username: "",
     fname: "",
@@ -17,11 +17,9 @@ const formReset = {
 const initialDisabled = true;
 
 function SignUp() {
-    const [formValues, setFormValues] = useState(formReset) 
+    const [formValues, setFormValues] = useState(initialFormValues) 
     const [disabled, setDisabled] = useState(initialDisabled);
     const history = useHistory();
-
-    
     
       const postNewUser = (userInfo) => {
         axiosWithAuth()
@@ -36,8 +34,8 @@ function SignUp() {
 
     const onSubmit = (event) => {
         event.preventDefault()
-        console.log(formValues)
-        // postNewUser(formValues);
+        console.log(finalForm)
+        // postNewUser(finalForm);
     }
     
     const inputChange = (name, value) => {
@@ -53,6 +51,22 @@ function SignUp() {
         history.push("/")
     }
 
+    const owner = {
+      userrole: {
+        userroleid: 1,
+        userroletype: "OWNER"
+      }
+    }
+    const renter = {
+      userrole: {
+        userroleid: 2,
+        userroletype: "RENTER"
+      }
+    }
+
+  let finalForm;
+  if(formValues.userrole === "1") finalForm = {...formValues, ...owner};
+  if(formValues.userrole === "2") finalForm = {...formValues, ...renter};
 
   return (
     <div>
@@ -110,12 +124,10 @@ function SignUp() {
             </label>
             <h3>Account Role</h3>
             <label>
-              <select
-                onChange={onChange}
-              >
-                <option value="none">- Select -</option>
-                <option value={formValues.userrole.userroletype} name="userrole.userroletype">OWNER</option>
-                <option value={formValues.userrole.userroletype}>RENTER</option>
+              <select name="userrole" value={formValues.userrole} onChange={onChange}>
+                <option value="none">----Select----</option>
+                <option value={1}>OWNER</option>
+                <option value={2}>RENTER</option>
               </select>
             </label>
           </div>
