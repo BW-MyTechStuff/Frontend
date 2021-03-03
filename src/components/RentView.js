@@ -34,19 +34,19 @@ function RentView() {
             {(item ? <div>
                         <h3>{item.itemname}</h3>
                         <p>{`Item Description: ${item.itemdescription}`}</p>
-                        <p>{`Availability: ${item.itemstatus.itemstatustype}`}</p>
+                        <p>{`${item.itemstatus.itemstatustype}`}</p>
                         <p>{`Cost per week: ${item.itemcostperday}$`}</p>
                         <h3>Owner Contact:</h3>
                         <p>{`Name: ${item.user.fname} ${item.user.lname}`}</p>
                         <p>{`Email: ${item.user.email}`}</p>
                         <button onClick={back}>Back</button>
-                        <button onClick={rent}>Rent</button>
+                        <button onClick={rent}>Rent {`${item.itemcostperday}$`}</button>
                     </div> 
                     
                     : <p>loading</p>)}
               
         </div>
-        
+
     )
 }
         
