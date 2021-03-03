@@ -23,16 +23,16 @@ function SignUp() {
 
     
     
-    //   const postNewUser = (userInfo) => {
-    //     axiosWithAuth()
-    //       .post("/users/user", userInfo)
-    //       .then((res) => {
-    //         console.log(res);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   };
+      const postNewUser = (userInfo) => {
+        axiosWithAuth()
+          .post("/users/user", userInfo)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
 
     const onSubmit = (event) => {
         event.preventDefault()
@@ -114,8 +114,8 @@ function SignUp() {
                 onChange={onChange}
               >
                 <option value="none">- Select -</option>
-                <option value={formValues.userroletype} name="account_role">OWNER</option>
-                <option value={formValues.userroletype}>RENTER</option>
+                <option value={formValues.userrole.userroletype} name="userrole.userroletype">OWNER</option>
+                <option value={formValues.userrole.userroletype}>RENTER</option>
               </select>
             </label>
           </div>
