@@ -46,7 +46,7 @@ function Login(props) {
         e.preventDefault();
         axios
           .post(
-            "YOUR LOGIN ENDPOINT HERE",
+            "https://usemytechstuff-tt26.herokuapp.com/login",
             `grant_type=password&username=${values.username}&password=${values.password}`,
             {
               headers: {
@@ -56,10 +56,11 @@ function Login(props) {
             },
           )
           .then((res) => {
-            console.log(res.data);
+            console.log("res.data log:", res.data);
             localStorage.setItem("token", res.data.access_token);
             props.history.push("/user-dashboard");
-          });
+          })
+          .catch((err) => console.log({err}))
       };
 
 
@@ -80,7 +81,7 @@ function Login(props) {
                     <input name= 'username' type= 'text' onChange={change} value= {values.username}/>
                 </label>
                 <label>Password
-                    <input name= 'password' type= 'text' onChange={change} value= {values.password}/>
+                    <input name= 'password' type= 'password' onChange={change} value= {values.password}/>
                 </label>
                 <button disabled={disabled}>Login</button>
                 <div>
