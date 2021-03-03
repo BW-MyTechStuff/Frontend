@@ -2,6 +2,7 @@ import React, { useState, useEffect}  from 'react'
 import axios from 'axios'
 import * as yup from "yup"
 import formSchema from "../utils/form_validation/formLogin";
+import { useHistory } from "react-router-dom";
 
 const initialValues = {
     username: '',
@@ -15,6 +16,7 @@ const initialErrors = {
 const initialDisabled = true
 
 function Login(props) {
+  const history = useHistory();
 
     const [values, setValues] = useState(initialValues)
     const [errors, setErrors] = useState(initialErrors)
@@ -72,6 +74,10 @@ function Login(props) {
         const { name, value } = evt.target;
         update(name, value);
       };
+
+      const toSignUp = () => {
+        history.push("/sign-up")
+    }
       
       
 
@@ -91,6 +97,7 @@ function Login(props) {
                   <div>{errors.password}</div>
                 </div>
             </form>  
+            <div onClick={toSignUp}>No Account yet? Sign up here</div>
         </div>
     )
 }

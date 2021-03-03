@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from "react"
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import LandingPage from "./components/LandingPage";
 import UserDashboard from "./components/UserDashboard";
@@ -17,8 +17,10 @@ import SuccessPage from './components/SuccessPage';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const history = useHistory();
   const logout = () => {
     localStorage.removeItem('token')
+    history.push("/")
     setIsLoggedIn(false)
   }
 
