@@ -9,12 +9,12 @@ function ItemView(props) {
         e.preventDefault();
         history.push(`/item/${item.itemid}`);
     }
+
     return (
         <div className="">
             <p>{item.itemname}</p>
             <p>{item.itemstatus.itemstatustype}</p>
             <p>{item.itemcostperday + "$ per day"}</p>
-            <p>{item.itemid}</p>
             <div>
                 <button onClick={shopClick}>More Details</button>
             </div>
