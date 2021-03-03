@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 export default function UserDashboard(props) {
 
     const [ user, setUser] = useState([])
     const userName = localStorage.getItem("name");
+    const history = useHistory();
 
     useEffect(() => {
     axiosWithAuth()
@@ -18,7 +20,9 @@ export default function UserDashboard(props) {
         .catch(err => console.log({err}))
     }, [])
 
-    
+    const addNewButton = () => {
+        history.push("/add-new-item")
+    }
 
 
     return (
@@ -49,9 +53,10 @@ export default function UserDashboard(props) {
                     <Link to="edit-item">
                         {(user.items ? user.items.map(item => {return item.itemname}) : null)}
                     </Link>
-                    <Link to="/add-new-item" >
-                        <p>Add New Item</p>
-                    </Link>
+                    <br/>
+                    <button onClick={addNewButton}>
+                        Add New Item
+                    </button>
                 </div>
             </div>
         </>
