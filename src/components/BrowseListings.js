@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import ItemView from "./ItemView";
 
 function BrowseListings() {
 
     const [ items, setItems] = useState([])
+    
 
     useEffect(() => {
     axiosWithAuth()
@@ -13,18 +15,18 @@ function BrowseListings() {
             setItems(res.data);
         })
         .catch(err => console.log({err}))
-    }, [BrowseListings])
+    }, [])
+
+    
 
     return (
         <div>
-            {console.log(items)}
+            <h1>Browse Listings</h1>
+            
             {items.map(item => {
-                return <div className="item-browse-card">
-                            <p>{item.itemname}</p>
-                            <p>{item.itemstatus.itemstatustype}</p>
-                            <p>{item.itemcostperday + "$ per day"}</p>
-                       </div>
- 
+                {console.log(items)}
+                return <ItemView key={item.itemid} item={item}/>
+                
             })}
         </div>
     )
