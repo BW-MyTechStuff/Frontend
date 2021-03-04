@@ -134,7 +134,7 @@ function SignUp() {
           </div>
         </div>
         <div>
-          <button disabled={null}>Sign Up</button>
+          <button disabled={false}>Sign Up</button>
         </div>
       </form>
       <div>
