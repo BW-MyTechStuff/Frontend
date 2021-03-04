@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import * as yup from "yup"
-import itemValidation from '../utils/form_validation/itemValidation'
 
 function EditItem() {
 
@@ -53,28 +51,8 @@ function EditItem() {
         numberofdaysrented: 0
     }
 
-    const [ disabled, setDisabled] = useState(true)
     const [ item, setItem ] = useState(initialValues)
 
-    const validate = (name, value) => {
-        yup
-          .reach(itemValidation, name)
-          .validate(value)
-          .then(() => {
-            setErrors({...errors, [name]: ''})
-          })
-          .catch(err => {
-            setErrors({...errors, [name]: err.errors[0]})
-          })
-        setValues({
-          ...values,
-          [name]: value 
-        })
-    }
-    
-    useEffect(() => {
-        itemValidation.isValid(values).then(valid => setDisabled(!valid))
-    }, [values])
     
     const cancel = evt => {
         history.push("/user-dashboard")
@@ -85,7 +63,6 @@ function EditItem() {
     }
     const change = (evt) => {
         const { name, value } = evt.target
-        validate(name, value);
         updateForm(name, value);
     }
 
@@ -164,7 +141,7 @@ function EditItem() {
                         <input name= 'itemdescription' type= 'text' onChange={change} value={item.itemdescription}/>
                     </label>
                     <button onClick={cancel}>Cancel</button>
-                    <button disabled= {disabled} onClick={submit}>Edit Item</button>
+                    <button onClick={submit}>Edit Item</button>
                     <button onClick={deleteItem}>Delete Item</button>
                 </form>
             </div> 
