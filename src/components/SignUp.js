@@ -35,8 +35,8 @@ function SignUp() {
 
     const onSubmit = (event) => {
         event.preventDefault()
-        console.log(finalForm)
         postNewUser(finalForm);
+        history.push("/")
     }
     
     const inputChange = (name, value) => {
