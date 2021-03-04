@@ -107,6 +107,17 @@ function EditItem() {
         formSubmit()
         history.push("/user-dashboard")
     }
+
+    const deleteItem = (e) => {
+        e.preventDefault()
+        axiosWithAuth()
+            .delete(`/items/item/${item.itemid}`)
+            .then(() => {
+                history.push("/user-dashboard")
+            })
+            .catch(err => console.log(err.message))
+
+    }
    
 
     return (
@@ -131,6 +142,7 @@ function EditItem() {
                     </label>
                     <button onClick={cancel}>Cancel</button>
                     <button onClick={submit}>Edit Item</button>
+                    <button onClick={deleteItem}>Delete Item</button>
                 </form>
             </div> 
             
