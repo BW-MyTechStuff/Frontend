@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from 'axios'
 
 const initialFormValues = {
     userrole:{
@@ -22,8 +23,8 @@ function SignUp() {
     const history = useHistory();
     
       const postNewUser = (userInfo) => {
-        axiosWithAuth()
-          .post("/users/user", userInfo)
+        axios
+          .post("https://usemytechstuff-tt26.herokuapp.com/users/user", userInfo)
           .then((res) => {
             console.log(res);
           })
@@ -35,7 +36,7 @@ function SignUp() {
     const onSubmit = (event) => {
         event.preventDefault()
         console.log(finalForm)
-        // postNewUser(finalForm);
+        postNewUser(finalForm);
     }
     
     const inputChange = (name, value) => {
@@ -116,7 +117,7 @@ function SignUp() {
             <label>
               Password
               <input
-                type="text"
+                type="password"   // this needs to be password type
                 onChange={onChange}
                 name="password"
                 value={formValues.password}
