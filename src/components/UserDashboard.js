@@ -25,7 +25,6 @@ export default function UserDashboard(props) {
         history.push("/add-new-item")
     }
 
-
     return (
         <>
             <div className="user-profile">
