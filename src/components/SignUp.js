@@ -1,9 +1,22 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import * as yup from 'yup';
 import axios from 'axios'
+import SignUpValidation from '../utils/form_validation/SignUpValidation';
 
 const initialFormValues = {
+    userrole:{
+        userroleid: 0,
+        userroletype: "",
+    },
+    username: "",
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+  }
+  
+const initialFormErrors= {
     userrole:{
         userroleid: 0,
         userroletype: "",
@@ -19,6 +32,7 @@ const initialDisabled = true;
 
 function SignUp() {
     const [formValues, setFormValues] = useState(initialFormValues) 
+    const [formErrors, setFormErrors] = useState(initialFormErrors) 
     const [disabled, setDisabled] = useState(initialDisabled);
     const history = useHistory();
     
@@ -33,6 +47,12 @@ function SignUp() {
           });
       };
 
+      useEffect(() => {
+        SignUpValidation.isValid(formValues).then(valid => {
+          console.log(valid)
+          return setDisabled(!valid)}
+       )}, [formValues])
+
     const onSubmit = (event) => {
         event.preventDefault()
         postNewUser(finalForm);
@@ -40,6 +60,14 @@ function SignUp() {
     }
     
     const inputChange = (name, value) => {
+      yup.reach(SignUpValidation, name)
+    .validate(value)
+    .then(()=> {
+      setFormErrors({...formErrors, [name]: ''})
+    })
+    .catch(err => {
+      setFormErrors({...formErrors, [name]: err.errors[0]})
+    })
       setFormValues({...formValues, [name]: value})
       
     }
@@ -74,6 +102,14 @@ function SignUp() {
       <form onSubmit={onSubmit}>
         <div>
           <h2>Sign Up</h2>
+          {/* <div className='form-group submit'> */}
+          <div className='errors'>  
+              <div>{formErrors.fname}</div>
+              <div>{formErrors.lname}</div>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.password}</div>
+              <div>{formErrors.userrole.type}</div>
+          </div>      
           <div>
             <label>
               First Name
@@ -107,7 +143,7 @@ function SignUp() {
             <label>
               Email
               <input
-                type="text"
+                type="email"
                 onChange={onChange}
                 placeholder="abc123@abc.com"
                 name="email"
@@ -117,7 +153,7 @@ function SignUp() {
             <label>
               Password
               <input
-                type="password"   // this needs to be password type
+                type="password" 
                 onChange={onChange}
                 name="password"
                 value={formValues.password}
@@ -134,7 +170,7 @@ function SignUp() {
           </div>
         </div>
         <div>
-          <button disabled={null}>Sign Up</button>
+          <button disabled={disabled}>Sign Up</button>
         </div>
       </form>
       <div>
