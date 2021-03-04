@@ -29,7 +29,6 @@ function BrowseListings() {
             <button onClick={returnToDash}>Return to Dashboard</button>
             
             {items.map(item => {
-                {console.log(items)}
                 return <ItemView key={item.itemid} item={item}/>
                 
             })}

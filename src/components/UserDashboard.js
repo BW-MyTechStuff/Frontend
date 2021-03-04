@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import ItemCard from "./ItemCard";
 
 export default function UserDashboard(props) {
 
@@ -50,9 +51,11 @@ export default function UserDashboard(props) {
                     </div> */}
                 <div className="owner-listings">
                     <h3>My Listed Items</h3>
-                    <Link to="edit-item">
-                        {(user.items ? user.items.map(item => {return item.itemname}) : null)}
-                    </Link>
+                    {/* {console.log(user.items)} */}
+                    {(user.items ? user.items.map(item =>  <ItemCard key ={item.itemid} item={item}/>) : null)}
+                    {/* {user.items.map(item => {
+                        return <ItemCard item={item}/> 
+                    })} */}
                     <br/>
                     <button onClick={addNewButton}>
                         Add New Item
