@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import * as yup from "yup"
+import itemValidation from '../utils/form_validation/itemValidation'
 
 const initialDisabled = true
 
@@ -59,8 +61,29 @@ function AddNewItem() {
         setItem({...item, [name]:value})
     }
 
+    const validate = (name, value) => {
+        yup
+          .reach(itemValidation, name)
+          .validate(value)
+          .then(() => {
+            setErrors({...errors, [name]: ''})
+          })
+          .catch(err => {
+            setErrors({...errors, [name]: err.errors[0]})
+          })
+        setValues({
+          ...values,
+          [name]: value 
+        })
+    }
+    
+    useEffect(() => {
+        itemValidation.isValid(values).then(valid => setDisabled(!valid))
+    }, [values])
+    
     const change = (evt) => {
         const { name, value } = evt.target
+        validate(name,value);
         updateForm(name, value);
     }
 
@@ -134,7 +157,7 @@ function AddNewItem() {
                     <input name= 'itemdescription' type= 'text' onChange={change} value={item.description}/>
                 </label>
                 <button onClick={cancel}>Cancel</button>
-                <button onClick={submit}>Add Item</button>
+                <button disabled={disabled} onClick={submit}>Add Item</button>
             </form>
         </div>
     )
