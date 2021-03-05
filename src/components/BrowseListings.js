@@ -24,14 +24,18 @@ function BrowseListings() {
     }
 
     return (
-        <div>
-            <h1>Browse Listings</h1>
+        <div className='home-wrapper'>
+            <nav>
+                <h1>Browse Listings</h1>
+            </nav>
+
             <button onClick={returnToDash}>Return to Dashboard</button>
-            
+            <div className='item-wrapper'>
             {items.map(item => {
                 return <ItemView key={item.itemid} item={item}/>
                 
             })}
+        </div>
         </div>
     )
 }

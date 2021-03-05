@@ -98,83 +98,85 @@ function SignUp() {
   if(formValues.userrole === "2") finalForm = {...formValues, ...renter};
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          <h2>Sign Up</h2>
-          {/* <div className='form-group submit'> */}
-          <div className='errors'>  
-              <div>{formErrors.fname}</div>
-              <div>{formErrors.lname}</div>
-              <div>{formErrors.username}</div>
-              <div>{formErrors.password}</div>
-              <div>{formErrors.userrole.type}</div>
-          </div>      
+    <div className='home-wrapper'>
+      <nav><h2>Sign Up</h2> </nav>
+      <div className='item-wrapper'>
+        <form className='form'  onSubmit={onSubmit}>
           <div>
-            <label>
-              First Name
-              <input
-                type="text"
-                onChange={onChange}
-                placeholder="John"
-                name="fname"
-                value={formValues.fname}
-              />
-            </label>
-            <label>
-              Last Name
-              <input
-                type="text"
-                onChange={onChange}
-                placeholder="Doe"
-                name="lname"
-                value={formValues.lname}
-              />
-            </label>
-            <label>
-              Username
-              <input
-                type="text"
-                onChange={onChange}
-                name="username"
-                value={formValues.username}
-              />
-            </label>
-            <label>
-              Email
-              <input
-                type="email"
-                onChange={onChange}
-                placeholder="abc123@abc.com"
-                name="email"
-                value={formValues.email}
-              />
-            </label>
-            <label>
-              Password
-              <input
-                type="password" 
-                onChange={onChange}
-                name="password"
-                value={formValues.password}
-              />
-            </label>
-            <h3>Account Role</h3>
-            <label>
-              <select name="userrole" value={formValues.userrole} onChange={onChange}>
-                <option value="none">----Select----</option>
-                <option value={1}>OWNER</option>
-                <option value={2}>RENTER</option>
-              </select>
-            </label>
+            {/* <div className='form-group submit'> */}
+            <div className='errors'>  
+                <div>{formErrors.fname}</div>
+                <div>{formErrors.lname}</div>
+                <div>{formErrors.username}</div>
+                <div>{formErrors.password}</div>
+                <div>{formErrors.userrole.type}</div>
+            </div>      
+            <div className='from-group'>
+              <label className='form-row' >
+                <input 
+                  type="text"
+                  onChange={onChange}
+                  placeholder="First Name"
+                  name="fname"
+                  value={formValues.fname}
+                />
+              </label>
+              <label className='form-row'>
+                <input
+                  type="text"
+                  onChange={onChange}
+                  placeholder="Last Name"
+                  name="lname"
+                  value={formValues.lname}
+                />
+              </label>
+              <label className='form-row'>
+                <input
+                  type="text"
+                  onChange={onChange}
+                  placeholder="Username"
+                  name="username"
+                  value={formValues.username}
+                  />
+              </label>
+              <label className='form-row'>
+                <input
+                  type="email"
+                  onChange={onChange}
+                  placeholder="E-mail"
+                  name="email"
+                  value={formValues.email}
+                  />
+              </label>
+              <label className='form-row'>
+                <input
+                  type="password" 
+                  onChange={onChange}
+                  placeholder="Password"
+                  name="password"
+                  value={formValues.password}
+                  />
+              </label >
+              
+              <label className='form-row' >
+                <p>Account Role </p>
+                <select name="userrole" value={formValues.userrole} onChange={onChange}>
+                  <option value="none">----Select----</option>
+                  <option value={1}>OWNER</option>
+                  <option value={2}>RENTER</option>
+                </select>
+              </label>
+            </div>
           </div>
+          <div className='buttons'>
+            <div className='form-button'>
+              <button disabled={disabled}>Sign Up</button>
+            </div>
+            <div className='form-button'> 
+            <button onClick={clickBack}>Back</button>
+            </div>
         </div>
-        <div>
-          <button disabled={disabled}>Sign Up</button>
-        </div>
-      </form>
-      <div>
-        <button onClick={clickBack}>Back</button>
+        </form>
       </div>
     </div>
   );

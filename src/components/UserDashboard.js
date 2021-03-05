@@ -19,32 +19,42 @@ export default function UserDashboard(props) {
             setUser(res.data);
         })
         .catch(err => console.log({err}))
-    }, [])
+    }, [userName])
 
     const addNewButton = () => {
         history.push("/add-new-item")
     }
-
+console.log(user.fname)
     return (
-        <>
-            <div className="user-profile">
-                <div>
-                    <h3>User Profile</h3>
-                    <p>{user.fname} {user.lname}</p>
+        <div className='user-dashboard-wrapper'>
+            <div className='user-nav'>
+            <nav >
+                <h1>User Profile</h1>
+            </nav>
+            </div>
+            <div className='main-container'>
+
+            <div className='left-container'>
+                <div className="user-profile">
+                    
+                    <h3>{user.fname} {user.lname}</h3>
                     <p>{user.email}</p>
                     {/* <p>{user.userrole.userroletype}</p> */}
                     {/* {(user.userrole.userroletype ? user.userrole.userroletype : null)} */}
+                    <div className='buttons'>
+                        <div className='form-button'>
+                            <button className='logout' onClick={props.logout}>Logout</button>
+                        </div>
+                    </div>
                 </div>
-                <button className='logout' onClick={props.logout}>Logout</button>
             </div>
-            <br />
-            <div>
+    
                 <Link to='/browse-listings'>
-                    <p>Browse Listings</p>
+                    <h2>Browse Listings</h2>
                 </Link>
-            </div>
-            <br />
-            <div className="listing-container">
+            <div className='right-container'>
+    
+            <div className="">
                 {/* <div className="currently-renting">
                         not sure if this is possible rn
                     </div> */}
@@ -55,12 +65,19 @@ export default function UserDashboard(props) {
                     {/* {user.items.map(item => {
                         return <ItemCard item={item}/> 
                     })} */}
-                    <br/>
-                    <button onClick={addNewButton}>
-                        Add New Item
-                    </button>
+                <div className='buttons'>
+                    <div className='form-button'>
+                        <button onClick={addNewButton}>
+                            Add New Item
+                        </button>
+                    </div>
+                </div>
+    
+                    
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
+        </div>
     )
 }

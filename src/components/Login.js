@@ -82,22 +82,33 @@ function Login(props) {
       
 
     return (
-        <div>
+        <div className='home-wrapper'>
+           <nav>
             <h1>Sign In</h1>
-            <form onSubmit = {submit}>
-                <label>Username
-                    <input name= 'username' type= 'text' onChange={change} value= {values.username}/>
+           </nav>
+             
+            <form className='form' onSubmit = {submit}>
+            <div className='from-group'>
+                <label className='form-row'>
+                    <input name= 'username' type= 'text' onChange={change} value= {values.username} 
+                    placeholder='Username'/>
                 </label>
-                <label>Password
-                    <input name= 'password' type= 'password' onChange={change} value= {values.password}/>
+                <label className='form-row'>
+                    <input name= 'password' type= 'password' onChange={change} value= {values.password}
+                    placeholder='Password'/>
                 </label>
+                <div className='buttons'>
+                  <div className='form-button'>
                 <button disabled={disabled}>Login</button>
+                </div>
+                </div>
                 <div>
                   <div>{errors.username}</div>
                   <div>{errors.password}</div>
                 </div>
+            <div className='span' onClick={toSignUp}>No Account yet? <span>Sign up here</span></div>
+            </div>
             </form>  
-            <div onClick={toSignUp}>No Account yet? Sign up here</div>
         </div>
     )
 }

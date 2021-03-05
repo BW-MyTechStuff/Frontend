@@ -121,33 +121,50 @@ function EditItem() {
    
 
     return (
-        <div>
+        <div >
             {(item ? 
             
-            <div>
-                
-                <h1>{`Edit ${item.itemname}`}</h1>
-                <form onSubmit = {submit}>
-                    <label>Name:
-                        <input name= 'itemname' type= 'text' onChange={change} value={item.itemname}/>
+            <div className='home-wrapper'>
+                <nav>
+                    <h1>{`Edit ${item.itemname}`}</h1>
+                </nav>
+                <div className='item-wrapper'> 
+                <form className='form' onSubmit = {submit}>
+                <div className='from-group'>
+                    <label className='form-row'>
+                        <p>Name:</p>
+                        <input name= 'itemname' type= 'text' onChange={change} value={item.itemname}
+                        placeholder/>
                     </label>
-                    <label>Cost per day:
+                    <label className='form-row'>
+                        <p>Cost per day:</p>
                         <input name= 'itemcostperday' type='number' step='0.01' onChange={change} value={item.itemcostperday}/>
                     </label>
-                    <label>Availability:
+                    <label className='form-row'>
+                        <p>Availability:</p>
                         <input name= 'availability' type='text' onChange={change} value={item.itemstatus.itemstatustype}/>
                     </label>
-                    <label>Description:
+                    <label className='form-row'>
+                    <p>Description:</p>
                         <input name= 'itemdescription' type= 'text' onChange={change} value={item.itemdescription}/>
                     </label>
-                    <button onClick={cancel}>Cancel</button>
-                    <button onClick={submit}>Edit Item</button>
-                    <button onClick={deleteItem}>Delete Item</button>
+                    <div className='buttons'>
+                        <div className='form-button'>
+                            <button onClick={deleteItem}>Delete Item</button>
+                            </div>
+                        <div className='form-button'>
+                            <button onClick={submit}>Edit Item</button>
+                        </div>
+                        <div className='form-button'>
+                            <button onClick={cancel}>Cancel</button>
+                        </div>
+                        </div>
+                    </div>
                 </form>
             </div> 
             
+            </div>
             : null)}
-           
         </div>
     )
 }
