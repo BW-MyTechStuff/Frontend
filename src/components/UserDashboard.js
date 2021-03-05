@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import ItemCard from "./ItemCard";
+import styled from "styled-components";
 
 export default function UserDashboard(props) {
 
@@ -27,22 +28,25 @@ export default function UserDashboard(props) {
 
     return (
         <>
-            <div className="user-profile">
+        <Container>
+            <Userprofile className="user-profile">
                 <div>
-                    <h3>User Profile</h3>
+                    <Userh3>User Profile</Userh3>
                     <p>{user.fname} {user.lname}</p>
                     <p>{user.email}</p>
                     {/* <p>{user.userrole.userroletype}</p> */}
                     {/* {(user.userrole.userroletype ? user.userrole.userroletype : null)} */}
                 </div>
                 <button className='logout' onClick={props.logout}>Logout</button>
-            </div>
+            </Userprofile>
+        </Container>
             <br />
-            <div>
+            <Linktest>
                 <Link to='/browse-listings'>
-                    <p>Browse Listings</p>
+                    <h3>Browse Listings</h3>
                 </Link>
-            </div>
+            </Linktest>
+            <Breakline />
             <br />
             <div className="listing-container">
                 {/* <div className="currently-renting">
@@ -55,7 +59,9 @@ export default function UserDashboard(props) {
                     {/* {user.items.map(item => {
                         return <ItemCard item={item}/> 
                     })} */}
-                    <br/>
+                    <br />
+                    <Breakline />
+                    <br />
                     <button onClick={addNewButton}>
                         Add New Item
                     </button>
@@ -64,3 +70,39 @@ export default function UserDashboard(props) {
         </>
     )
 }
+
+const Container = styled.div `
+  width: 50%;
+  margin: auto; 
+  text-align: center;
+  background-color: #1D817F;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+`
+
+const Userprofile = styled.div ` 
+    background-color: #2E3842;
+    border-radius: 10px;
+    padding-bottom: 2%;
+`
+
+const Userh3 = styled.h3 `
+    /* color: #1C1C1C; */
+`
+const Linktest = styled.p ` 
+    border: solid white;
+    border-radius: 10px;
+    width: 30%;
+    margin: auto;
+    padding: 2%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+`
+
+const Breakline = styled.div ` 
+    border: solid black;
+    width: 80%;
+    margin: auto;
+`
+// background-color: #B3FEFE;

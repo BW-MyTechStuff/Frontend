@@ -3,6 +3,7 @@ import axios from 'axios'
 import * as yup from "yup"
 import formSchema from "../utils/form_validation/loginValidation";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const initialValues = {
     username: '',
@@ -82,7 +83,7 @@ function Login(props) {
       
 
     return (
-        <div>
+        <Container>
             <h1>Sign In</h1>
             <form onSubmit = {submit}>
                 <label>Username
@@ -98,8 +99,15 @@ function Login(props) {
                 </div>
             </form>  
             <div onClick={toSignUp}>No Account yet? Sign up here</div>
-        </div>
+        </Container>
     )
 }
 
 export default Login
+
+const Container = styled.div `
+  width: 30%;
+  margin: auto; 
+  text-align: center;
+  padding-top: 5%;
+`

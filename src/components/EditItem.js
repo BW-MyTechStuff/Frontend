@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from "yup"
 import itemValidation from '../utils/form_validation/itemValidation'
+import styled from "styled-components";
 
 function EditItem() {
 
@@ -145,7 +146,7 @@ function EditItem() {
    
 
     return (
-        <div>
+        <Container>
             {(item ? 
             
             <div>
@@ -172,8 +173,14 @@ function EditItem() {
             
             : null)}
            
-        </div>
+        </Container>
     )
 }
 
 export default EditItem
+
+const Container = styled.div `
+  width: 30%;
+  margin: auto; 
+  text-align: center;
+`

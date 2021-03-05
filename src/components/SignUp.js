@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import * as yup from 'yup';
 import axios from 'axios'
 import SignUpValidation from '../utils/form_validation/SignUpValidation';
+import styled from "styled-components";
 
 const initialFormValues = {
     userrole:{
@@ -98,7 +99,7 @@ function SignUp() {
   if(formValues.userrole === "2") finalForm = {...formValues, ...renter};
 
   return (
-    <div>
+    <Container>
       <form onSubmit={onSubmit}>
         <div>
           <h2>Sign Up</h2>
@@ -176,8 +177,14 @@ function SignUp() {
       <div>
         <button onClick={clickBack}>Back</button>
       </div>
-    </div>
+    </Container>
   );
 }
 
 export default SignUp;
+
+const Container = styled.div `
+  width: 30%;
+  margin: auto; 
+  text-align: center;
+`

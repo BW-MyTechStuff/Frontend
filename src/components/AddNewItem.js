@@ -4,6 +4,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup"
 import itemValidation from '../utils/form_validation/itemValidation'
+import styled from "styled-components";
 
 const initialDisabled = true
 
@@ -130,7 +131,7 @@ function AddNewItem() {
     }
 
     const cancel = evt => {
-          setItem(initialValues)
+        history.push("/user-dashboard")
     }
 
     const submit = e => {
@@ -141,7 +142,7 @@ function AddNewItem() {
     console.log(item)
 
     return (
-        <div>
+        <Container>
             <h1>Add New Item</h1>
             <form onSubmit = {submit}>
                 <label>Name:
@@ -159,8 +160,14 @@ function AddNewItem() {
                 <button onClick={cancel}>Cancel</button>
                 <button disabled={disabled} onClick={submit}>Add Item</button>
             </form>
-        </div>
+        </Container>
     )
 }
 
 export default AddNewItem
+
+const Container = styled.div `
+  width: 30%;
+  margin: auto; 
+  text-align: center;
+`
