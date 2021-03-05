@@ -11,8 +11,15 @@ function EditItem() {
     const arr = history.location.pathname.split("/")
     const id = arr[2]
 
+    
+
     useEffect(() => {
-        
+        const fetchItem = async() =>{
+            const res = await axiosWithAuth().get(`/items/item/${id}`)
+            const itemdata = res.data
+            console.log("hi", itemdata)
+            return setItem(itemdata)
+        }
         // axiosWithAuth()
         //         .get(`/items/item/${id}`)
         //         .then(res => {
@@ -21,14 +28,9 @@ function EditItem() {
         //         })
         //         .catch(err => console.log({err}))
                fetchItem()
-            }, [])
+            }, [id])
     
-            const fetchItem = async() =>{
-                const res = await axiosWithAuth().get(`/items/item/${id}`)
-                const itemdata = res.data
-                console.log("hi", itemdata)
-                return setItem(itemdata)
-            }
+    
 
     
 
