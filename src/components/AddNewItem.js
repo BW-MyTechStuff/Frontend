@@ -71,15 +71,15 @@ function AddNewItem() {
           .catch(err => {
             setErrors({...errors, [name]: err.errors[0]})
           })
-        setValues({
-          ...values,
+        setItem({
+          ...item,
           [name]: value 
         })
     }
     
     useEffect(() => {
-        itemValidation.isValid(values).then(valid => setDisabled(!valid))
-    }, [values])
+        itemValidation.isValid(item).then(valid => setDisabled(!valid))
+    }, [item])
     
     const change = (evt) => {
         const { name, value } = evt.target
