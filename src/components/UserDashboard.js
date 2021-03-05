@@ -20,7 +20,7 @@ export default function UserDashboard(props) {
             setUser(res.data);
         })
         .catch(err => console.log({err}))
-    }, [])
+    }, [userName])
 
     const addNewButton = () => {
         history.push("/add-new-item")
