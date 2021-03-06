@@ -4,7 +4,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup"
 import itemValidation from '../utils/form_validation/itemValidation'
-import styled from "styled-components";
+
 
 const initialDisabled = true
 
@@ -140,32 +140,44 @@ function AddNewItem() {
     console.log(item)
 
     return (
-        <Container>
-            <h1>Add New Item</h1>
-            <form onSubmit = {submit}>
-                <label>Name:
-                    <input name= 'itemname' type= 'text' onChange={change} value={item.itemName}/>
+        <div className='home-wrapper'>
+            <nav>
+                <h1>Add New Item</h1>
+            </nav>
+            <div className='item-wrapper'>
+            <form className='form' onSubmit = {submit}>
+            <div className='from-group'>
+                <label className='form-row'>:
+                    <input name= 'itemname' type= 'text' onChange={change} value={item.itemName}
+                    placeholder='Name'/>
                 </label>
-                <label>Cost per day:
-                    <input name= 'itemcostperday' type='number' step='0.01' onChange={change} value={item.costPerDay}/>
+                <label className='form-row'>
+                    <input name= 'itemcostperday' type='number' step='0.01' onChange={change} value={item.costPerDay}
+                    placeholder='Cost Per Day'/>
                 </label>
-                <label>Availability:
-                    <input name= 'numberofdaysrented' type='number' onChange={change} value={item.availability}/>
+                <label className='form-row'>
+                    <input name= 'numberofdaysrented' type='number' onChange={change} value={item.availability}
+                    placeholder='Availability'/>
                 </label>
-                <label>Description:
-                    <input name= 'itemdescription' type= 'text' onChange={change} value={item.description}/>
+                <label className='form-row'>
+                    <input name= 'itemdescription' type= 'text' onChange={change} value={item.description}
+                    placeholder='Description'/>
                 </label>
-                <button onClick={cancel}>Cancel</button>
+                </div>
+                <div className='buttons'>
+                <div className='form-button'>
                 <button disabled={disabled} onClick={submit}>Add Item</button>
+                </div>
+                     <div className='form-button'>
+                <button onClick={cancel}>Cancel
+                </button>
+                </div> 
+                </div>
             </form>
-        </Container>
+        </div>
+    </div>
     )
 }
 
 export default AddNewItem
 
-const Container = styled.div `
-  width: 30%;
-  margin: auto; 
-  text-align: center;
-`

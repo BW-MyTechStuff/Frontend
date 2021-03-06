@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import ItemCard from "./ItemCard";
-import styled from "styled-components";
+
 
 export default function UserDashboard(props) {
 
@@ -27,28 +27,35 @@ export default function UserDashboard(props) {
     }
 
     return (
-        <>
-        <Container>
-            <Userprofile className="user-profile">
-                <div>
-                    <Userh3>User Profile</Userh3>
-                    <p>{user.fname} {user.lname}</p>
+        <div className='user-dashboard-wrapper'>
+            <div className='user-nav'>
+            <nav >
+                <h1>User Profile</h1>
+            </nav>
+            </div>
+            <div className='main-container'>
+
+            <div className='left-container'>
+                <div className="user-profile">
+                    
+                    <h3>{user.fname} {user.lname}</h3>
                     <p>{user.email}</p>
                     {/* <p>{user.userrole.userroletype}</p> */}
                     {/* {(user.userrole.userroletype ? user.userrole.userroletype : null)} */}
+                    <div className='buttons'>
+                        <div className='form-button'>
+                            <button className='logout' onClick={props.logout}>Logout</button>
+                        </div>
+                    </div>
                 </div>
-                <button className='logout' onClick={props.logout}>Logout</button>
-            </Userprofile>
-        </Container>
-            <br />
-            <Linktest>
+            </div>
+    
                 <Link to='/browse-listings'>
-                    <h3>Browse Listings</h3>
+                    <h2>Browse Listings</h2>
                 </Link>
-            </Linktest>
-            <Breakline />
-            <br />
-            <div className="listing-container">
+            <div className='right-container'>
+    
+            <div className="">
                 {/* <div className="currently-renting">
                         not sure if this is possible rn
                     </div> */}
@@ -59,50 +66,20 @@ export default function UserDashboard(props) {
                     {/* {user.items.map(item => {
                         return <ItemCard item={item}/> 
                     })} */}
-                    <br />
-                    <Breakline />
-                    <br />
-                    <button onClick={addNewButton}>
-                        Add New Item
-                    </button>
+                <div className='buttons'>
+                    <div className='form-button'>
+                        <button onClick={addNewButton}>
+                            Add New Item
+                        </button>
+                    </div>
+                </div>
+    
+                    
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
+        </div>
     )
 }
 
-const Container = styled.div `
-  width: 50%;
-  margin: auto; 
-  text-align: center;
-  background-color: #1D817F;
-  padding: 20px;
-  margin-top: 30px;
-  border-radius: 10px;
-`
-
-const Userprofile = styled.div ` 
-    background-color: #2E3842;
-    border-radius: 10px;
-    padding-bottom: 2%;
-`
-
-const Userh3 = styled.h3 `
-    /* color: #1C1C1C; */
-`
-const Linktest = styled.p ` 
-    border: solid white;
-    border-radius: 10px;
-    width: 30%;
-    margin: auto;
-    padding: 2%;
-    margin-top: 5%;
-    margin-bottom: 3%;
-`
-
-const Breakline = styled.div ` 
-    border: solid black;
-    width: 80%;
-    margin: auto;
-`
-// background-color: #B3FEFE;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import styled from "styled-components";
+
 
 function RentView() {
     const history = useHistory();
@@ -31,7 +31,7 @@ function RentView() {
     
     return (
         
-        <Container>
+        <div>
             {(item ? <div>
                         <h3>{item.itemname}</h3>
                         <p>{`Item Description: ${item.itemdescription}`}</p>
@@ -46,21 +46,11 @@ function RentView() {
                     
                     : <p>loading</p>)}
               
-        </Container>
+        </div>
 
     )
 }
         
 
 export default RentView
-
-const Container = styled.div `
-  width: 30%;
-  margin: auto; 
-  text-align: center;
-  background-color: #1D817F;
-  margin-top: 20px;
-  padding: 2%;
-  border-radius: 10px;
-`
 

@@ -3,7 +3,7 @@ import axios from 'axios'
 import * as yup from "yup"
 import formSchema from "../utils/form_validation/loginValidation";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+
 
 const initialValues = {
     username: '',
@@ -83,31 +83,36 @@ function Login(props) {
       
 
     return (
-        <Container>
-            <h1>Sign In</h1>
-            <form onSubmit = {submit}>
-                <label>Username
-                    <input name= 'username' type= 'text' onChange={change} value= {values.username}/>
-                </label>
-                <label>Password
-                    <input name= 'password' type= 'password' onChange={change} value= {values.password}/>
-                </label>
-                <button disabled={disabled}>Login</button>
-                <div>
-                  <div>{errors.username}</div>
-                  <div>{errors.password}</div>
-                </div>
-            </form>  
-            <div onClick={toSignUp}>No Account yet? Sign up here</div>
-        </Container>
-    )
+      <div className='home-wrapper'>
+         <nav>
+          <h1>Sign In</h1>
+         </nav>
+           
+          <form className='form' onSubmit = {submit}>
+          <div className='from-group'>
+              <label className='form-row'>
+                  <input name= 'username' type= 'text' onChange={change} value= {values.username} 
+                  placeholder='Username'/>
+              </label>
+              <label className='form-row'>
+                  <input name= 'password' type= 'password' onChange={change} value= {values.password}
+                  placeholder='Password'/>
+              </label>
+              <div className='buttons'>
+                <div className='form-button'>
+              <button disabled={disabled}>Login</button>
+              </div>
+              </div>
+              <div>
+                <div>{errors.username}</div>
+                <div>{errors.password}</div>
+              </div>
+          <div className='span' onClick={toSignUp}>No Account yet? <span>Sign up here</span></div>
+          </div>
+          </form>  
+      </div>
+  )
 }
 
 export default Login
 
-const Container = styled.div `
-  width: 30%;
-  margin: auto; 
-  text-align: center;
-  padding-top: 5%;
-`

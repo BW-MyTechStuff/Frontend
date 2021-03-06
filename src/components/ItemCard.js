@@ -11,9 +11,12 @@ function ItemCard(props) {
     }
 
     return (
-        <div>
+        <div className='listing-container'>
             {console.log(item)}
+            <div className='item-card-button'>
             <button onClick={editClick}>{item.itemname}</button>
+            </div>
+            
         </div>
     )
 }
