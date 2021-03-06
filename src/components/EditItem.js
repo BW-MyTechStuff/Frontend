@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import * as yup from "yup"
+import itemValidation from '../utils/form_validation/itemValidation'
+
 
 function EditItem() {
 
@@ -8,8 +11,15 @@ function EditItem() {
     const arr = history.location.pathname.split("/")
     const id = arr[2]
 
+    
+
     useEffect(() => {
-        
+        const fetchItem = async() =>{
+            const res = await axiosWithAuth().get(`/items/item/${id}`)
+            const itemdata = res.data
+            console.log("hi", itemdata)
+            return setItem(itemdata)
+        }
         // axiosWithAuth()
         //         .get(`/items/item/${id}`)
         //         .then(res => {
@@ -18,14 +28,9 @@ function EditItem() {
         //         })
         //         .catch(err => console.log({err}))
                fetchItem()
-            }, [])
+            }, [id])
     
-            const fetchItem = async() =>{
-                const res = await axiosWithAuth().get(`/items/item/${id}`)
-                const itemdata = res.data
-                console.log("hi", itemdata)
-                return setItem(itemdata)
-            }
+    
 
     
 
@@ -51,8 +56,29 @@ function EditItem() {
         numberofdaysrented: 0
     }
 
+    const [ , setDisabled] = useState(true)
     const [ item, setItem ] = useState(initialValues)
+    const [errors, setErrors] = useState(initialErrors)
 
+    const validate = (name, value) => {
+        yup
+          .reach(itemValidation, name)
+          .validate(value)
+          .then(() => {
+            setErrors({...errors, [name]: ''})
+          })
+          .catch(err => {
+            setErrors({...errors, [name]: err.errors[0]})
+          })
+        setItem({
+          ...item,
+          [name]: value 
+        })
+    }
+    
+    useEffect(() => {
+        itemValidation.isValid(item).then(valid => setDisabled(!valid))
+    }, [item])
     
     const cancel = evt => {
         history.push("/user-dashboard")
@@ -63,6 +89,7 @@ function EditItem() {
     }
     const change = (evt) => {
         const { name, value } = evt.target
+        validate(name, value);
         updateForm(name, value);
     }
 

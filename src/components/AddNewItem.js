@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup"
 import itemValidation from '../utils/form_validation/itemValidation'
 
+
 const initialDisabled = true
 
 // working
@@ -18,12 +19,10 @@ function AddNewItem() {
     axiosWithAuth()
         .get(`/users/user/name/${userName}`)
         .then(res => {
-            // console.log(userName);
-            // console.log(res.data);
             setUser(res.data);
         })
         .catch(err => console.log({err}))
-    }, [])
+    }, [userName])
 
     let id = user.userid;
     let usrname = user.username;

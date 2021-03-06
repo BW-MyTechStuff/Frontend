@@ -18,7 +18,7 @@ function RentView() {
             })
             .catch(err => console.log({err}))
            
-        }, [])
+        }, [id])
 
     const back = () => {
         history.push("/browse-listings")

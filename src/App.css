@@ -621,11 +621,12 @@ padding: 20px;
     padding: 10px;
     width: 150px;
     letter-spacing: 0.225em;
-  
-    &:disabled {
-      cursor: not-allowed;
-      color: lightgray;
-      background-color: lightgray;
-      border-color: #08cea3;
-    }
+    
   }
+  button:disabled {
+    cursor: not-allowed;
+    color: lightgray;
+    background-color: lightgray;
+    border-color: #08cea3;
+  }
+  

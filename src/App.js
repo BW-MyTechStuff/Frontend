@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState} from "react"
 import { Route, useHistory } from "react-router-dom";
@@ -16,7 +15,7 @@ import SuccessPage from './components/SuccessPage';
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [, setIsLoggedIn] = useState(false)
   const history = useHistory();
   const logout = () => {
     localStorage.removeItem('token')
