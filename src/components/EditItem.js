@@ -56,7 +56,7 @@ function EditItem() {
         numberofdaysrented: 0
     }
 
-    const [ disabled, setDisabled] = useState(true)
+    const [ , setDisabled] = useState(true)
     const [ item, setItem ] = useState(initialValues)
     const [errors, setErrors] = useState(initialErrors)
 
